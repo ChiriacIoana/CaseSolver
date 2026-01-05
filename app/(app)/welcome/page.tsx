@@ -53,6 +53,7 @@ export default function Home() {
               size="large"
               variant="contained"
               color="primary"
+              onClick={() => window.location.href = "/case"}
             >
               Get Started
             </Button>

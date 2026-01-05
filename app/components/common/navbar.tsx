@@ -39,7 +39,7 @@ export default function Navbar() {
 
           <Box sx={{ display: "flex", gap: 2 }}>
             <Button color="inherit" onClick={() => window.location.href = "/welcome"}>Home</Button>
-            <Button color="inherit">Solve</Button>
+            <Button color="inherit" onClick={() => window.location.href = "/case"}>Solve</Button>
             <Button color="inherit">Docs</Button>
           </Box>
 
