@@ -18,7 +18,7 @@ export default function Navbar() {
       elevation={0}
       sx={{
         bgcolor: alpha(theme.palette.background.default, 0.1),
-        backdropFilter: "blur(20px)", 
+        backdropFilter: "blur(12px)", 
         borderBottom: `1px solid ${alpha(theme.palette.secondary.main, 0.3)}`, 
         px: 0,
         py: 0, 
