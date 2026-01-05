@@ -40,15 +40,15 @@ export default function Navbar() {
           <Box sx={{ display: "flex", gap: 2 }}>
             <Button color="inherit" onClick={() => window.location.href = "/welcome"}>Home</Button>
             <Button color="inherit" onClick={() => window.location.href = "/case"}>Solve</Button>
-            <Button color="inherit">Docs</Button>
+            <Button color="inherit" onClick={() => window.location.href = "/docss"}>Docs</Button>
           </Box>
 
           <Box sx={{ ml: "auto", display: "flex", gap: 2 }}>
-            <Button color="primary" variant="outlined">
-              vienna yey
+            <Button color="primary" variant="outlined" onClick={() => window.location.href = "/testimonials"}>
+              Testimonials
             </Button>
-            <Button color="primary" variant="contained">
-              midnight
+            <Button color="primary" variant="contained" onClick={() => window.location.href = "/how"}>
+              How it works
             </Button>
           </Box>
         </Toolbar>

@@ -62,6 +62,7 @@ export default function Home() {
               size="large"
               variant="outlined"
               color="primary"
+              onClick={() => window.location.href = "/docss"}
             >
               Learn More
             </Button>
