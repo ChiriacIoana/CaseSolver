@@ -29,7 +29,7 @@ export default function EvidenceForm({ evidence, index, onChange, onRemove }: Pr
         value={evidence.description}
         onChange={(e) => onChange(index, "description", e.target.value)}
         fullWidth
-        sx={{ mb: 1 }}
+        sx={{ mb: 1, mt: 4 }}
       />
       <TextField
         label="Type (physical, testimonial, digital)"

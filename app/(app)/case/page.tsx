@@ -99,7 +99,7 @@ export default function CaseForm() {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
-      <Paper sx={{ p: 4 }}>
+      <Paper sx={{ p: 4}}>
         <Typography variant="h4" gutterBottom>
           Murder Mystery Case Form
         </Typography>

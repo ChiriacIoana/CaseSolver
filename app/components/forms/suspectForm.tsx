@@ -18,7 +18,7 @@ export default function SuspectForm({ suspect, index, onChange, onRemove }: Prop
     <Paper sx={{ p: 2, mb: 2, position: "relative" }}>
       <IconButton
         onClick={() => onRemove(index)}
-        sx={{ position: "absolute", top: 8, right: 8 }}
+        sx={{ position: "absolute", top: 2, right: 8 }}
         color="error"
         size="small"
       >
@@ -29,7 +29,7 @@ export default function SuspectForm({ suspect, index, onChange, onRemove }: Prop
         value={suspect.name}
         onChange={(e) => onChange(index, "name", e.target.value)}
         fullWidth
-        sx={{ mb: 1 }}
+        sx={{ mb: 1, mt: 4 }}
       />
       <TextField
         label="Motive"
