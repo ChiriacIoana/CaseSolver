@@ -1,3 +1,9 @@
+## Wut is this?
+
+This app is called AXIOM.
+AXIOM helps you organize, analyze, and solve murder mystery cases. Whether you're a detective, mystery enthusiast, or student working on logic puzzles, AXIOM provides tools to make solving cases faster and smarter.
+The application uses a serverless architecture. Supabase provides the database, while all analytical logic is executed client-side using rule-based algorithms.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
