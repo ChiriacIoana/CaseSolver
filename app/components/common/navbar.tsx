@@ -57,12 +57,23 @@ export default function Navbar() {
     >
       <Container maxWidth="lg">
         <Toolbar disableGutters sx={{ minHeight: 52 }}>
+          <Box
+            component="img"
+            src="/logo.png"
+            alt="AXIOM Logo"
+            sx={{
+              height: 36, 
+              width: 36, 
+              mr: 2,
+            }}
+          />
           <Typography
             variant="h6"
             sx={{
               fontWeight: 700,
               letterSpacing: "0.05em",
               mr: 4,
+              ml: 5,
             }}
           >
             AXIOM
