@@ -41,6 +41,8 @@ export default function IceCard({
         width: "100%",
         minHeight: 220,
         borderRadius: 14,
+        padding: 5,
+        marginBottom: 16,
         overflow: "hidden",
         background: "rgba(39, 10, 11, 0.55)",
         backdropFilter: "blur(18px)",

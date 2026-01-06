@@ -51,19 +51,29 @@ export default function Testimonials() {
           gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
           gap: 4,
           mt: 2,
-          p: 4
+          p: 4,
         }}
       >
         {testimonials.map((user, idx) => (
-           <TestimonialCard
-            key={idx}
-            name={user.name}
-            role={user.role}
-            avatarUrl={user.avatarUrl}
-            text={user.text}
-            glowColor="rgba(0, 0, 0, 0.38)" 
-            backgroundColor="rgba(0, 9, 15, 0.46)" 
-          />
+          <TestimonialCard
+            glowColor="rgba(0, 0, 0, 0.38)"
+            backgroundColor="rgba(0, 9, 15, 0.46)"
+          >
+            <Avatar
+              src={user.avatarUrl}
+              alt={user.name}
+              sx={{ width: 120, height: 120, mb: 2 }}
+            />
+            <Typography variant="subtitle1" fontWeight="bold">
+              {user.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {user.role}
+            </Typography>
+            <Typography variant="body2" sx={{ mt: 1 }}>
+              "{user.text}"
+            </Typography>
+          </TestimonialCard>
         ))}
       </Box>
     </Box>

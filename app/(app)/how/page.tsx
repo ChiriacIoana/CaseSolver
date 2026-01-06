@@ -4,13 +4,14 @@ import React from "react";
 import { Box, Container, Typography, Paper } from "@mui/material";
 import { Assignment, People, Search, CheckCircle } from "@mui/icons-material";
 import Link from "next/link";
-import { Sparkles } from 'lucide-react';
+import { Sparkles } from "lucide-react";
+import TestimonialCard from "@/app/components/common/TestimonialCard";
 
 export default function HowItWorks() {
   const steps = [
     {
       title: "1. how the magic happens",
-      icon: <Sparkles color="#b73b43ff" size={40}/>,
+      icon: <Sparkles color="#b73b43ff" size={40} />,
       description:
         "AXIOM collects structured inputs from the user, sending it to Hack Club’s GPT-5.1 API via the Responses endpoint and returning the AI-generated analysis to your frontend",
     },
@@ -36,13 +37,18 @@ export default function HowItWorks() {
 
   return (
     <Container maxWidth="md" sx={{ mt: 6, mb: 6 }}>
-    
       <Typography variant="h3" align="center" gutterBottom>
         How AXIOM Works
       </Typography>
 
-      <Typography variant="h6" color="text.secondary" align="center" sx={{ mb: 4 }}>
-        Follow these simple steps to organize and solve your murder mystery cases efficiently.
+      <Typography
+        variant="h6"
+        color="text.secondary"
+        align="center"
+        sx={{ mb: 4 }}
+      >
+        Follow these simple steps to organize and solve your murder mystery
+        cases efficiently.
       </Typography>
 
       <Box
@@ -56,26 +62,16 @@ export default function HowItWorks() {
         }}
       >
         {steps.map((step, idx) => (
-          <Paper
-            key={idx}
-            elevation={3}
-            sx={{
-              p: 4,
-              textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              borderRadius: 3,
-            }}
+          <TestimonialCard
+            glowColor="rgba(0, 0, 0, 0.38)"
+            backgroundColor="rgba(0, 9, 15, 0.46)"
           >
             {step.icon}
-            <Typography variant="h6" fontWeight="bold" gutterBottom>
+            <Typography variant="h6" fontWeight="bold" sx={{ mt: 2 }}>
               {step.title}
             </Typography>
-            <Typography color="text.secondary">
-              {step.description}
-            </Typography>
-          </Paper>
+            <Typography color="text.secondary">{step.description}</Typography>
+          </TestimonialCard>
         ))}
       </Box>
 

@@ -1,26 +1,22 @@
 "use client";
 
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
-import { Box, Avatar, Typography } from "@mui/material";
-import React from "react";
+import { Box } from "@mui/material";
+import React, { ReactNode } from "react";
 
-type TestimonialCardProps = {
-  name: string;
-  role: string;
-  avatarUrl: string;
-  text: string;
-  glowColor?: string; 
-  backgroundColor?: string; 
+type IceCardProps = {
+  children: ReactNode;
+  glowColor?: string;
+  backgroundColor?: string;
+  minHeight?: number | string;
 };
 
 export default function TestimonialCard({
-  name,
-  role,
-  avatarUrl,
-  text,
+  children,
   glowColor = "rgba(12, 0, 0, 0.71)",
   backgroundColor = "rgba(1, 1, 7, 0.89)",
-}: TestimonialCardProps) {
+  minHeight = 300,
+}: IceCardProps) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -45,13 +41,16 @@ export default function TestimonialCard({
       transition={{ type: "spring", stiffness: 160, damping: 18 }}
       style={{
         position: "relative",
-        borderRadius: 14,
+        borderRadius: 16,
         overflow: "hidden",
         background: backgroundColor,
         backdropFilter: "blur(14px)",
         WebkitBackdropFilter: "blur(14px)",
-        boxShadow: "0 76px 100px rgba(40, 1, 1, 0.45)",
-        minHeight: 300,
+        boxShadow: "0 25px 60px rgba(57, 0, 0, 0.53)",
+        minHeight,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <motion.div
@@ -70,24 +69,13 @@ export default function TestimonialCard({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "center",
           textAlign: "center",
-          gap: 1.5,
+          width: "100%",
+          gap: 0.8,
         }}
       >
-        <Avatar
-          src={avatarUrl}
-          alt={name}
-          sx={{ width: 100, height: 100 }}
-        />
-        <Typography variant="subtitle1" fontWeight="bold">
-          {name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {role}
-        </Typography>
-        <Typography variant="body2" sx={{ mt: 1 }}>
-          {`"${text}"`}
-        </Typography>
+        {children}
       </Box>
     </motion.div>
   );
