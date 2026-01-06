@@ -1,7 +1,7 @@
 ## Wut is this?
 
 This app is called AXIOM.
-AXIOM helps you organize, analyze, and solve murder mystery cases. Whether you're a detective, mystery enthusiast, or student working on logic puzzles, AXIOM provides tools to make solving cases faster and smarter.
+AXIOM helps you organize, analyze, and solve murder mystery cases. Whether you're a detective, mystery enthusiast, or student working on logic puzzles, AXIOM provides tools to make solving cases faster and smarter. It's collecting structured inputs from the user, sending it to Hack Club’s GPT-5.1 API via the Responses endpoint and returning the AI-generated analysis to your frontend.
 The application uses a serverless architecture. Supabase provides the database, while all analytical logic is executed client-side using rule-based algorithms.
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
