@@ -5,6 +5,7 @@ import { Paper, TextField, MenuItem, IconButton } from "@mui/material";
 import { Remove } from "@mui/icons-material";
 
 import { Suspect } from "./types"; 
+import IceCard from "../common/IceCard";
 
 type Props = {
   suspect: Suspect;
@@ -15,7 +16,7 @@ type Props = {
 
 export default function SuspectForm({ suspect, index, onChange, onRemove }: Props) {
   return (
-    <Paper sx={{ p: 2, mb: 2, position: "relative" }}>
+    <IceCard >
       <IconButton
         onClick={() => onRemove(index)}
         sx={{ position: "absolute", top: 2, right: 8 }}
@@ -66,6 +67,6 @@ export default function SuspectForm({ suspect, index, onChange, onRemove }: Prop
         <MenuItem value="yes">Yes</MenuItem>
         <MenuItem value="no">No</MenuItem>
       </TextField>
-    </Paper>
+    </IceCard>
   );
 }

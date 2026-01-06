@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Box, Typography, Paper, Avatar } from "@mui/material";
+import TestimonialCard from "@/app/components/common/TestimonialCard";
 
 type Testimonial = {
   name: string;
@@ -54,20 +55,15 @@ export default function Testimonials() {
         }}
       >
         {testimonials.map((user, idx) => (
-          <Paper key={idx} sx={{ p: 3, textAlign: "center", height: "100%" }}>
-            <Avatar
-              src={user.avatarUrl}
-              alt={user.name}
-              sx={{ width: 120, height: 120, margin: "0 auto", mb: 2 }}
-            />
-            <Typography variant="subtitle1" fontWeight="bold">
-              {user.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-              {user.role}
-            </Typography>
-            <Typography variant="body2">{`"${user.text}"`}</Typography>
-          </Paper>
+           <TestimonialCard
+            key={idx}
+            name={user.name}
+            role={user.role}
+            avatarUrl={user.avatarUrl}
+            text={user.text}
+            glowColor="rgba(0, 0, 0, 0.38)" 
+            backgroundColor="rgba(0, 9, 15, 0.46)" 
+          />
         ))}
       </Box>
     </Box>

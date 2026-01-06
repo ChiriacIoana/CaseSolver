@@ -5,6 +5,7 @@ import { Paper, TextField, MenuItem, IconButton } from "@mui/material";
 import { Remove } from "@mui/icons-material";
 
 import { Evidence } from "./types";
+import IceCard from "../common/IceCard";
 
 type Props = {
   evidence: Evidence;
@@ -15,7 +16,7 @@ type Props = {
 
 export default function EvidenceForm({ evidence, index, onChange, onRemove }: Props) {
   return (
-    <Paper sx={{ p: 2, mb: 2, position: "relative" }}>
+    <IceCard>
       <IconButton
         onClick={() => onRemove(index)}
         sx={{ position: "absolute", top: 8, right: 8 }}
@@ -57,6 +58,6 @@ export default function EvidenceForm({ evidence, index, onChange, onRemove }: Pr
         <MenuItem value="yes">Yes</MenuItem>
         <MenuItem value="no">No</MenuItem>
       </TextField>
-    </Paper>
+    </IceCard>
   );
 }

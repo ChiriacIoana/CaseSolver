@@ -10,6 +10,8 @@ import {
   IconButton,
 } from "@mui/material";
 import { Add } from "@mui/icons-material";
+import IceCard from "@/app/components/common/IceCard";
+
 
 import { Suspect, Evidence } from "../../components/forms/types";
 import SuspectForm from "../../components/forms/suspectForm";
@@ -183,7 +185,7 @@ export default function CaseForm() {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
-      <Paper sx={{ p: 4}}>
+      <IceCard>
         <Typography variant="h4" gutterBottom>
           Murder Mystery Case Form
         </Typography>
@@ -253,12 +255,12 @@ export default function CaseForm() {
             Submit Case
           </Button>
         </Box>
-      </Paper>
+      </IceCard>
       {aiAnalysis && (
-      <Paper sx={{ p: 4, mt: 4 }}>
+      <IceCard>
         <Typography variant="h6">AI Insight of your case</Typography>
         <Typography sx={{mt: 1}}>{aiAnalysis}</Typography>
-      </Paper>
+      </IceCard>
       )}
     </Container>
   );
