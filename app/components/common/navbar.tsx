@@ -43,7 +43,8 @@ export default function Navbar() {
             <Button color="inherit" onClick={() => window.location.href = "/docss"}>Docs</Button>
           </Box>
 
-          <Box sx={{ ml: "auto", display: "flex", gap: 2 }}>
+//this is not responsive bro
+          <Box sx={{ ml: "auto", display: "flex", gap: 2, p: { xs: 1, sm: 1, md: 0 } }}>
             <Button color="primary" variant="outlined" onClick={() => window.location.href = "/testimonials"}>
               Testimonials
             </Button>

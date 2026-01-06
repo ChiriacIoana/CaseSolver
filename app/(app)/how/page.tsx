@@ -4,32 +4,33 @@ import React from "react";
 import { Box, Container, Typography, Paper } from "@mui/material";
 import { Assignment, People, Search, CheckCircle } from "@mui/icons-material";
 import Link from "next/link";
+import { Sparkles } from 'lucide-react';
 
 export default function HowItWorks() {
   const steps = [
     {
-      title: "1. ble ble write algotithm 1 used",
-      icon: <Assignment sx={{ fontSize: 50, color: "primary.main", mb: 2 }} />,
+      title: "1. how the magic happens",
+      icon: <Sparkles color="#b73b43ff" size={40}/>,
       description:
-        "Enter the details of the murder mystery, including the case title, victim, location, and time of death.",
+        "AXIOM collects structured inputs from the user, sending it to Hack Club’s GPT-5.1 API via the Responses endpoint and returning the AI-generated analysis to your frontend",
     },
     {
-      title: "2. numero dos",
+      title: "2. the structure behind",
       icon: <People sx={{ fontSize: 50, color: "primary.main", mb: 2 }} />,
       description:
-        "List all suspects with their motives, alibis, and access to potential weapons.",
+        "The application uses a serverless architecture. Supabase provides the database, while all analytical logic is executed using AI.",
     },
     {
-      title: "3. de ce ii place lui elon musk sa foloseasca site ul asta",
+      title: "3. why elon musk loveees using this application",
       icon: <Search sx={{ fontSize: 50, color: "primary.main", mb: 2 }} />,
       description:
-        "Input evidence details including type, reliability, and whether it contradicts any alibis.",
+        "Elon Musk loves using AXIOM because it streamlines the process of analyzing complex cases with AI-powered insights.",
     },
     {
-      title: "4. ce fel am fct baza de date idk",
+      title: "4. what makes axiom different",
       icon: <CheckCircle sx={{ fontSize: 50, color: "primary.main", mb: 2 }} />,
       description:
-        "AXIOM will help you logically evaluate suspects and evidence to narrow down the likely culprit.",
+        "AXIOM stands out due to its user-friendly interface, robust AI integration, and focus on cautious, non-definitive analysis, making it a reliable tool",
     },
   ];
 

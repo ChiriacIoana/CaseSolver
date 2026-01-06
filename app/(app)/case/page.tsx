@@ -256,7 +256,7 @@ export default function CaseForm() {
       </Paper>
       {aiAnalysis && (
       <Paper sx={{ p: 4, mt: 4 }}>
-        <Typography variant="h6">AI Insight</Typography>
+        <Typography variant="h6">AI Insight of your case</Typography>
         <Typography sx={{mt: 1}}>{aiAnalysis}</Typography>
       </Paper>
       )}
