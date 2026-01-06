@@ -15,6 +15,9 @@ import { Suspect, Evidence } from "../../components/forms/types";
 import SuspectForm from "../../components/forms/suspectForm";
 import EvidenceForm from "../../components/forms/evidenceForm";
 import CaseInfo from "@/app/components/forms/caseInfo";
+import { supabase } from "../../libs/supabaseClient";
+import caseInfo from "@/app/components/forms/caseInfo";
+
 
 export default function CaseForm() {
   const [caseTitle, setCaseTitle] = useState("");
@@ -24,6 +27,7 @@ export default function CaseForm() {
 
   const [suspects, setSuspects] = useState<Suspect[]>([]);
   const [evidences, setEvidences] = useState<Evidence[]>([]);
+  const [aiAnalysis, setAiAnalysis] = useState("");
 
   const addSuspect = () => {
     setSuspects((prev) => [
@@ -83,19 +87,99 @@ export default function CaseForm() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const caseData = {
-      caseTitle,
-      victimName,
-      timeOfDeath,
-      location,
-      suspects,
-      evidences,
-    };
-    console.log("Submitted case:", caseData);
-    alert("Case submitted! Check console for data.");
+  const analyzeCase = async () => {
+    try {
+    const res = await fetch("/api/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        caseInfo: {
+            title: caseTitle,
+            victim: victimName,
+            timeOfDeath,
+            location,
+          },
+          suspects,
+          evidence: evidences,
+    }),    
+    });
+  
+    const data = await res.json();
+    setAiAnalysis(data.analysis);
+    console.log("RAWW AI Analysis:",  JSON.stringify(data, null, 2));
+    } catch (err){
+      console.error("Error analyzing case:", err);
+      setAiAnalysis("Error generating analysis.");
+    }
+    
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const { data: caseData, error: caseError } = await supabase
+      .from("cases")
+      .insert({
+        title: caseTitle,
+        victim: victimName,
+        location,
+        time_of_death: timeOfDeath || null,
+      })
+      .select()
+      .single();
+
+    if (caseError) throw caseError;
+
+    const caseId = caseData.id;
+
+    if (suspects.length > 0) {
+      const { error: suspectsError } = await supabase.from("suspects").insert(
+        suspects.map((s) => ({
+          case_id: caseId,
+          name: s.name,
+          motive: s.motive,
+          alibi: s.alibi,
+        }))
+        );
+
+      if (suspectsError) throw suspectsError;
+    }
+
+    if (evidences.length > 0) {
+      const { error: evidenceError } = await supabase.from("evidence").insert(
+        evidences.map((e) => ({
+          case_id: caseId,
+          type: e.type,
+          description: e.description,
+          reliability: e.reliability,
+          contradicts_alibi: e.contradictsAlibi,
+          }))
+        );
+
+      if (evidenceError) throw evidenceError;
+    }
+    //call the ai analysis
+    await analyzeCase();
+
+    alert("Case submitted successfully!");
+
+    //reset the forms
+    setCaseTitle("");
+    setVictimName("");
+    setTimeOfDeath("");
+    setLocation("");
+    setSuspects([]);
+    setEvidences([]);
+
+  } catch (err) {
+    console.error(err);
+    alert(" Failed to submit case. Check console.");
+  }
+};
+
 
   return (
     <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
@@ -170,6 +254,12 @@ export default function CaseForm() {
           </Button>
         </Box>
       </Paper>
+      {aiAnalysis && (
+      <Paper sx={{ p: 4, mt: 4 }}>
+        <Typography variant="h6">AI Insight</Typography>
+        <Typography sx={{mt: 1}}>{aiAnalysis}</Typography>
+      </Paper>
+      )}
     </Container>
   );
 }
