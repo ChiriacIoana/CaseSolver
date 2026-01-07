@@ -27,7 +27,7 @@ Rules:
 - Do NOT invent facts
 - Do NOT be definitive
 - Use cautious language (may, appears, suggests)
-- Output EXACTLY three sentences
+- Output around three sentences
 
 Case information:
 ${JSON.stringify(caseInfo, null, 2)}
@@ -44,29 +44,43 @@ Provide a brief analytical insight.
             ],
           },
         ],
-        max_output_tokens: 120,
+        max_output_tokens: 300,
       }),
     });
 
     const data = await response.json();
 
     function extractAIText(data: any): string {
-      if (!data?.output) return "No analysis generated.";
+  if (!data) return "No analysis generated.";
 
-      const texts: string[] = [];
-
-      for (const msg of data.output) {
-        if (!msg.content) continue;
-
-        for (const c of msg.content) {
-          if (c.type === "output_text" && c.text) {
-            texts.push(c.text.trim());
-          }
-        }
+  // Try first method (all output objects)
+  const texts: string[] = [];
+  if (Array.isArray(data.output)) {
+    for (const msg of data.output) {
+      if (!msg.content) continue;
+      for (const c of msg.content) {
+        if (c.text) texts.push(c.text.trim());
       }
-
-      return texts.join("\n") || "No analysis generated.";
     }
+  }
+
+  // Fallback: single output_text
+  if (texts.length === 0 && data.output_text) {
+    texts.push(data.output_text.trim());
+  }
+
+  // Final fallback: first message text
+  if (texts.length === 0 && data.output?.[0]?.content?.[0]?.text) {
+    texts.push(data.output[0].content[0].text.trim());
+  }
+
+  if (texts.length === 0) {
+    console.log("Unexpected API response:", JSON.stringify(data, null, 2));
+  }
+
+  return texts.join("\n") || "No analysis generated.";
+}
+
 
     const analysis = extractAIText(data);
 
